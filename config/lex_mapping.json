@@ -1,0 +1,9 @@
+{
+  "date": "Receipt Date",
+  "gross": "Fee",
+  "vat": "VAT",
+  "chambers_deduction": "Chambers Deduction",
+  "client": "Professional Client",
+  "matter": "Matter",
+  "fee_note": "Fee Note"
+}

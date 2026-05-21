@@ -1,0 +1,26 @@
+{
+  "tax_year": "2026/27",
+  "note": "Illustrative figures. Verify every value against HMRC after each Budget before relying on output.",
+  "income_tax": {
+    "personal_allowance": 12570,
+    "pa_taper_threshold": 100000,
+    "bands": [
+      {"name": "basic", "rate": 0.20, "upper": 50270},
+      {"name": "higher", "rate": 0.40, "upper": 125140},
+      {"name": "additional", "rate": 0.45, "upper": null}
+    ]
+  },
+  "class4_nic": {
+    "lower_profits_limit": 12570,
+    "upper_profits_limit": 50270,
+    "main_rate": 0.06,
+    "upper_rate": 0.02
+  },
+  "vat": {
+    "scheme": "standard",
+    "standard_rate": 0.20
+  },
+  "payments_on_account": {
+    "threshold": 1000
+  }
+}
