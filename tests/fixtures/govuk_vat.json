@@ -1,0 +1,6 @@
+{
+  "title": "VAT rates",
+  "details": {
+    "body": "<table><tbody><tr><td>Standard rate</td><td>20%</td><td>Most goods and services</td></tr><tr><td>Reduced rate</td><td>5%</td><td>Some goods, e.g. home energy</td></tr><tr><td>Zero rate</td><td>0%</td><td>Zero-rated goods and services</td></tr></tbody></table>"
+  }
+}

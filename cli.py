@@ -12,7 +12,7 @@ import json
 import sys
 
 from chambers.dashboard import render, summarise
-from chambers.rates import load_rates
+from chambers.rates import current_tax_year, load_rates_for
 from chambers.sources import LexCsvSource
 
 
@@ -20,7 +20,8 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--receipts", required=True, help="LEX receipts CSV export")
     p.add_argument("--mapping", required=True, help="JSON mapping of logical field -> CSV header")
-    p.add_argument("--rates", required=True, help="JSON tax-year rates file")
+    p.add_argument("--rates-dir", default="config/rates", help="Directory of per-tax-year rates files")
+    p.add_argument("--tax-year", default=None, help="Tax-year label, e.g. 2026-27 (default: current)")
     p.add_argument("--other-expenses", type=float, default=0.0, help="Non-chambers expenses for the period (£)")
     p.add_argument("--other-expenses-pct", type=float, default=None, help="Non-chambers expenses as a fraction of turnover (e.g. 0.05)")
     p.add_argument("--input-vat", type=float, default=0.0, help="Recoverable input VAT for the period (£)")
@@ -29,7 +30,7 @@ def main(argv=None):
 
     with open(args.mapping, encoding="utf-8") as fh:
         mapping = json.load(fh)
-    rates = load_rates(args.rates)
+    rates = load_rates_for(args.tax_year or current_tax_year(), args.rates_dir)
 
     source = LexCsvSource(args.receipts, mapping, rates["vat"]["standard_rate"])
     receipts = source.receipts()

@@ -1,6 +1,6 @@
 {
-  "tax_year": "2026/27",
-  "note": "Illustrative figures. Verify every value against HMRC after each Budget before relying on output.",
+  "tax_year": "2026-27",
+  "note": "Income tax bands and VAT may be refreshed from gov.uk via chambers.rates_fetch (review the diff before promoting). Class 4 NIC and the payments-on-account threshold are maintained manually - verify against HMRC each year.",
   "income_tax": {
     "personal_allowance": 12570,
     "pa_taper_threshold": 100000,

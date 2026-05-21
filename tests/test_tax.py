@@ -5,7 +5,7 @@ import unittest
 from chambers.tax import class4_nic, income_tax, personal_allowance
 
 ROOT = os.path.dirname(os.path.dirname(__file__))
-with open(os.path.join(ROOT, "config", "rates.json"), encoding="utf-8") as fh:
+with open(os.path.join(ROOT, "config", "rates", "2026-27.json"), encoding="utf-8") as fh:
     RATES = json.load(fh)
 IT = RATES["income_tax"]
 NIC = RATES["class4_nic"]

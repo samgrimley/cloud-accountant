@@ -1,0 +1,6 @@
+{
+  "title": "Income Tax rates and Personal Allowances",
+  "details": {
+    "body": "<table><thead><tr><th>Band</th><th>Taxable income</th><th>Tax rate</th></tr></thead><tbody><tr><td>Personal Allowance</td><td>Up to £12,570</td><td>0%</td></tr><tr><td>Basic rate</td><td>£12,571 to £50,270</td><td>20%</td></tr><tr><td>Higher rate</td><td>£50,271 to £125,140</td><td>40%</td></tr><tr><td>Additional rate</td><td>over £125,140</td><td>45%</td></tr></tbody></table>"
+  }
+}
