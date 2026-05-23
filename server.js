@@ -38,7 +38,7 @@ app.post("/api/tts", wrap(tts));
 app.post("/api/push/subscribe", wrap(pushSubscribe));
 app.get("/api/cron/nudges", wrap(cronNudges));
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(__dirname, { dotfiles: "ignore" }));
 
 app.listen(PORT, () => {
   console.log(`ACT companion (dev) on http://localhost:${PORT}`);
