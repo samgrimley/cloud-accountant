@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#5b8a72" />
+    <title>ACT Companion</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- ===== LOGIN ===== -->
+    <div class="login" id="login" hidden>
+      <form class="login-card" id="login-form">
+        <div class="login-mark" aria-hidden="true">◌</div>
+        <h1>Welcome back</h1>
+        <p class="lede">A quiet place to make sense of things and move toward what matters.</p>
+        <input
+          type="password"
+          id="passphrase"
+          placeholder="Your passphrase"
+          autocomplete="current-password"
+          aria-label="Passphrase"
+        />
+        <button type="submit" id="login-btn">Enter</button>
+        <p class="login-error" id="login-error" hidden></p>
+      </form>
+    </div>
+
+    <div class="app" id="app" hidden>
+      <!-- ===== TALK ===== -->
+      <section class="screen" id="screen-talk" data-screen="talk">
+        <header class="topbar">
+          <h1>Companion</h1>
+          <div class="topbar-actions">
+            <button class="ghost-btn" id="new-chat" title="Start a fresh conversation">New</button>
+            <button class="icon-btn" id="open-settings" title="Settings" aria-label="Settings">⚙</button>
+          </div>
+        </header>
+
+        <div class="modes" id="modes" role="tablist" aria-label="Conversation mode">
+          <button class="mode" data-mode="talk" aria-pressed="true">Talk it through</button>
+          <button class="mode" data-mode="unhook" aria-pressed="false">Unhook</button>
+          <button class="mode" data-mode="values" aria-pressed="false">Find values</button>
+          <button class="mode" data-mode="plan" aria-pressed="false">Plan an action</button>
+          <button class="mode" data-mode="checkin" aria-pressed="false">Check in</button>
+        </div>
+
+        <div class="chat" id="chat" aria-live="polite"></div>
+
+        <form class="composer" id="composer">
+          <button type="button" class="mic-btn" id="mic" aria-label="Speak" title="Hold to talk">🎙</button>
+          <textarea
+            id="input"
+            rows="1"
+            placeholder="What's on your mind?"
+            autocomplete="off"
+          ></textarea>
+          <button type="submit" id="send" aria-label="Send">Send</button>
+        </form>
+      </section>
+
+      <!-- ===== VALUES ===== -->
+      <section class="screen" id="screen-values" data-screen="values" hidden>
+        <header class="topbar"><h1>Values</h1></header>
+        <div class="scroll">
+          <p class="lede">The directions that matter to you — what you want to stand for. Everything else points back here.</p>
+          <div id="values-list" class="cards"></div>
+          <button class="add-btn" id="add-value">+ Add a value</button>
+        </div>
+      </section>
+
+      <!-- ===== PLAN (ACE) ===== -->
+      <section class="screen" id="screen-plan" data-screen="plan" hidden>
+        <header class="topbar"><h1>This week</h1></header>
+        <div class="scroll">
+          <p class="lede">A few small actions in directions you care about. Aim for some of each over the week:</p>
+          <div class="ace-key">
+            <span class="ace ace-A">A — achievement</span>
+            <span class="ace ace-C">C — connection</span>
+            <span class="ace ace-E">E — enjoyment</span>
+          </div>
+          <div id="ace-balance" class="ace-balance"></div>
+          <div id="actions-list" class="cards"></div>
+          <button class="add-btn" id="add-action">+ Add an action</button>
+        </div>
+      </section>
+
+      <!-- ===== TOOLKIT ===== -->
+      <section class="screen" id="screen-toolkit" data-screen="toolkit" hidden>
+        <header class="topbar"><h1>Toolkit</h1></header>
+        <div class="scroll">
+          <h2 class="section-h">Today's basics</h2>
+          <p class="lede">The quiet foundations. No streaks, no guilt — just a gentle nudge.</p>
+          <div id="basics" class="basics"></div>
+
+          <h2 class="section-h">Saved exercises</h2>
+          <p class="lede">Things to <em>do</em> when difficult thoughts and feelings show up.</p>
+          <div id="exercises-list" class="cards"></div>
+          <button class="add-btn" id="add-exercise">+ Add an exercise</button>
+        </div>
+      </section>
+
+      <!-- ===== PROGRESS ===== -->
+      <section class="screen" id="screen-progress" data-screen="progress" hidden>
+        <header class="topbar"><h1>Progress</h1></header>
+        <div class="scroll">
+          <p class="lede">A gentle check on how things are going — so you can see change, and adjust if they're not.</p>
+          <div class="checkin-box">
+            <label>How's your mood right now?</label>
+            <div class="rating" id="rate-mood" data-field="mood"></div>
+            <label>How much did this week feel like <em>your kind of life</em>?</label>
+            <div class="rating" id="rate-values" data-field="valuesLiving"></div>
+            <textarea id="checkin-note" rows="2" placeholder="Anything you want to note (optional)"></textarea>
+            <button class="add-btn" id="save-checkin">Save check-in</button>
+          </div>
+          <div id="progress-chart"></div>
+        </div>
+      </section>
+
+      <!-- ===== NAV ===== -->
+      <nav class="tabbar" id="tabbar">
+        <button class="tab is-active" data-tab="talk"><span class="tab-i">◌</span>Talk</button>
+        <button class="tab" data-tab="values"><span class="tab-i">✦</span>Values</button>
+        <button class="tab" data-tab="plan"><span class="tab-i">◷</span>Week</button>
+        <button class="tab" data-tab="toolkit"><span class="tab-i">❒</span>Toolkit</button>
+        <button class="tab" data-tab="progress"><span class="tab-i">∿</span>Progress</button>
+      </nav>
+    </div>
+
+    <!-- crisis / disclaimer -->
+    <div class="disclaimer" id="disclaimer" hidden>
+      A support tool, not therapy or a crisis service. If you're in danger or thinking of harming yourself,
+      please contact your local emergency number or a crisis line now (e.g. 988 in the US/Canada, 116 123 Samaritans in the UK).
+      <button id="dismiss-disclaimer" aria-label="Dismiss">×</button>
+    </div>
+
+    <!-- generic editor dialog -->
+    <dialog id="editor">
+      <form method="dialog" id="editor-form">
+        <h3 id="editor-title">Edit</h3>
+        <div id="editor-fields"></div>
+        <menu>
+          <button value="cancel" class="ghost-btn" type="submit">Cancel</button>
+          <button value="save" id="editor-save" type="submit">Save</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <!-- settings dialog -->
+    <dialog id="settings">
+      <form method="dialog" id="settings-form">
+        <h3>Settings</h3>
+
+        <label class="row">
+          <span>Read replies aloud</span>
+          <input type="checkbox" id="set-speak" />
+        </label>
+
+        <label class="field">
+          <span>Voice</span>
+          <select id="set-voice">
+            <option value="alloy">Alloy</option>
+            <option value="ash">Ash</option>
+            <option value="ballad">Ballad</option>
+            <option value="coral">Coral</option>
+            <option value="sage">Sage</option>
+            <option value="verse">Verse</option>
+          </select>
+        </label>
+
+        <hr />
+
+        <label class="row">
+          <span>Gentle reminders &amp; nudges</span>
+          <input type="checkbox" id="set-notif" />
+        </label>
+        <p class="hint" id="notif-hint">Action reminders and check-in prompts, sent sparingly.</p>
+
+        <label class="row">
+          <span>Daily check-in prompt</span>
+          <input type="checkbox" id="set-checkin" />
+        </label>
+        <label class="field">
+          <span>Check-in time (hour, 0–23, UTC)</span>
+          <input type="number" id="set-checkin-hour" min="0" max="23" />
+        </label>
+
+        <hr />
+        <button type="button" class="ghost-btn danger" id="logout-btn">Sign out</button>
+
+        <menu>
+          <button value="close" type="submit">Done</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

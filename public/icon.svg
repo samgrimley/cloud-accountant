@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="ACT Companion">
+  <rect width="512" height="512" rx="112" fill="#5b8a72"/>
+  <g fill="none" stroke="#f6f4ef" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
+    <!-- a small plant/leaf: growth + values direction -->
+    <path d="M256 392 V214"/>
+    <path d="M256 268 C256 214 212 178 168 178 C168 232 212 268 256 268 Z" fill="#f6f4ef" stroke="none"/>
+    <path d="M256 244 C256 196 296 164 344 164 C344 212 304 244 256 244 Z" fill="#cfe3d6" stroke="none"/>
+    <path d="M196 392 H316" />
+  </g>
+</svg>

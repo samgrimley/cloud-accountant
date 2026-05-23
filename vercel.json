@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "functions": {
+    "api/chat.js": { "maxDuration": 60 },
+    "api/stt.js": { "maxDuration": 30 },
+    "api/tts.js": { "maxDuration": 30 }
+  },
+  "crons": [
+    { "path": "/api/cron/nudges", "schedule": "0 * * * *" }
+  ]
+}
